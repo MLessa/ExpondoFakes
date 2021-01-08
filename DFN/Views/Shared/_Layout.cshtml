@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169263111-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169263111-1');
+    </script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/Images/favicon-32x32.png"   >
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Expondo FAKES</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+
+    <div class="col-md-12 header">
+        <h1>Expondo Fakes</h1>
+        <h2>Ajude no combate às Fake News que desinformam a população brasileira.</h2>
+        <h2>Sua denúncia aparecerá no Twitter <a style="font-weight: bold" target="_blank" href="https://twitter.com/ExpondoFakesBR">@@expondoFakesBR</a></h2>
+    </div>
+
+    <div class="container body-content col-md-12">
+        @RenderBody()
+        <footer style="z-index:-1">
+            <img style="float: right;margin-right: 3%;padding-bottom:10px"
+                 src="~/Content/Images/objeto-inteligente-de-vetor.png" />
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/loadImage")
+    @Scripts.Render("~/bundles/croppie")
+    @Scripts.Render("~/bundles/exif")
+    @Scripts.Render("~/bundles/site")
+    @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+</body>
+</html>

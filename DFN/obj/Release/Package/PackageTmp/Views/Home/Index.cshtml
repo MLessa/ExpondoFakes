@@ -1,0 +1,64 @@
+﻿@model dynamic
+
+<div class="row col-md-12">
+    @using (Html.BeginForm("CreateDenounce", "Denounce", FormMethod.Post, new
+    {
+        enctype = "multipart/form-data",
+        id = "mainForm"
+    }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="sendFileField col-md-6 col-md-push-3">
+            <span id="sendFileFieldText" style="width: 80%;">Escolha o print ou foto da <b>fake news</b> encontrada</span>
+            <div class="sendFileBtn" align="center" onclick="$('#logoInput').click()">
+                <span>Selecionar</span>
+            </div>
+        </div>
+        <div class="col-md-12" style=" margin-top: 2%;">
+            <div id="postDetailDiv" class="col-md-12" style="display: none">
+                <div id="imageDiv" class="col-md-6">
+
+                </div>
+                <div class="col-md-6">
+                    <textarea id="tweetText" class="tweetText" name="TweetText" placeholder="Comente sobre a fake news encontrada"></textarea>
+                    <span class="charsLasting col-md-12">CARACTERES RESTANTES: 200</span>
+                </div>
+                <div class="col-md-12 fakeNewsURLField">
+                    <input id="fakeNewsURL" type="text" class="col-md-12" name="fakeNewsURL" placeholder="Endereço (URL) da Fake News [opcional]" />
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="round col-md-push-3">
+                    <input type="checkbox" id="checkbox" onchange="checkSGAlert()" />
+                    <label for="checkbox"></label>
+                </div>
+                <span class="chkDescription col-md-4">
+                    Marque esta opção caso deseje alertar ao <a href="https://twitter.com/slpng_giants_pt" target="_blank">Sleeping Giants BR</a> que existem propagandas no site.
+                </span>
+                <div class="submitBtn col-md-3 disabled" onclick="submitForm()">
+                    <span>
+                        Expor Fake News Anonimamente
+                    </span>
+                </div>
+            </div>
+        </div>
+        <input type="file" name="LogoFile" accept="image/*" id="logoInput" onchange="uploadFile(this)" style="display:none" />
+
+    }
+</div>
+<hr class="col-md-6 col-md-offset-3" />
+
+<div class="tweetCounter col-md-12" align="center">
+    <p style="width: 320px;">Fake News denunciadas</p>
+    <p style="font-size: 60px">@Model.GetType().GetProperty("Count").GetValue(Model)</p>
+    <p style="font-size: 16px">ÚLTIMA DENÚNCIA: @Model.GetType().GetProperty("LastDenounceDate").GetValue(Model).ToString("dd/MM/yyyy")</p>
+    <div class="followOnTwitter">
+        <a target="_blank" href="https://twitter.com/ExpondoFakesBR">Acompanhar no Twitter</a>
+    </div>
+</div>
+<script type="text/javascript">
+    var posted = "@Html.Raw(ViewBag.Posted)";
+</script>
